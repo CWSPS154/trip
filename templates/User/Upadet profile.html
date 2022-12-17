@@ -1,0 +1,86 @@
+{% include 'User/header.html' %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li class="active"><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<center>
+<form action="/Update/{{ data['login_id'] }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <section style="background-image: url(../../../static/user/images/profile.jpeg);opacity: .8">
+      <div class="container" style="background-color: lightblue;"><br><br><br><br>
+              <div class="col-md-1 animate-box col-md-offset-1">
+                <div class="classes class-single">
+      <div align="center"><a href="../../static/profilepic/{{ data['profile_pic'] }}"><img src="../../static/profilepic/{{ data['profile_pic'] }}" class="brand-image img-circle" width="350" height="350"/></a></div>
+             <div class="row animate-box">
+                  <div class="row form-group">
+                    <div class="col-md-12 col-md-offset-2"><br>
+                      <h1>{{ data['username'] }}</h1>
+                      <h2>Age:{{ data['dob'] }}</h2>
+                      <h2>Email:{{ data['mail'] }}</h32>
+                    </div></div></div></div></div>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-3">
+            <div class="row row-pb-lg">
+              <div class="col-md-6 animate-box col-md-offset-3">
+                <div class="classes class-single">
+                      <h4 align="left">Place<i class="icon-pencil"></i></h4>
+                      <input align="center" name="Place" type="text" class="form-control" placeholder="Enter Your Place" value="{{ data['place'] }}"><br>
+                      <h4 align="left">Post Office<i class="icon-pencil"></i></h4>
+                      <input align="center" name="PO" type="text" class="form-control" placeholder="Enter Your Post Office" value="{{ data['postoffice'] }}"><br>
+                      <h4 align="left">PIN<i class="icon-pencil"></i></h4>
+                      <input align="center" name="PIN" type="text" class="form-control" placeholder="Enter Your PIN" value="{{ data['pin'] }}"><br>
+                      <h4 align="left">Mobile Number<i class="icon-pencil"></i></h4>
+                      <input align="center" name="Mob" type="text" class="form-control" placeholder="Enter Your Mobile" value="{{ data['mobile_number'] }}"><br>
+                      <div class="form-group">
+                            <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" name="img" id="img" required="required">
+                              <label class="custom-file-label" for="customFile">Update your image</label>
+                            </div>
+                            <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                            <!-- <input type="file" name="img" id="img" required="required" class="form-submit"/> -->
+                        </div>
+                       <input class="btn btn-primary btn-lg" name="update" type="submit" id="update" value="Update" /></div></div></div></div></div></div></div>
+</form></center></section>
+{% include 'User/footer.html' %}

@@ -1,0 +1,42 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-image"></i><br>Advertisements</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="379" border="1"class="table table-bordered table-hover>
+      <tr>
+       <td width="113"></td>
+       {% if ln==1 %}
+    <h2>No Advertisement</h2>
+          {% else %}
+      <td width="200"><div align="center"><strong>Ads</strong></div></td>
+      <td width="92"><div align="center"><strong>Date</strong></div></td>
+      <td width="65"><div align="center"></div></td>
+    </tr>
+      {% for row in data %}
+    <tr>
+      <td>&nbsp;
+        <div align="center"><img src="../../static/ads/{{ row['ad'] }}" width="200" height="200"/><br>
+          {{ row['agency_name'] }}
+        </div></td>
+      <td>&nbsp;
+        <div align="center">{{ row['date'] }}</div></td>
+      <td>{% if row['type']=='pending' or row['type']=='Removed' %}
+          <p align="center"><a href="/ad_post?id={{ row['ad_id'] }}&aid={{ row['agency_id'] }}"><input class="btn btn-primary" type="button" value="Post"></a></p>
+        {% else %}
+          <p align="center"><a href="/ad_delete?id={{ row['ad_id'] }}&aid={{ row['agency_id'] }}"><input class="btn btn-danger" type="button" value="Remove"></a></p></td>
+        {% endif %}
+    </tr>
+      {% endfor %}{%endif%}
+  </table>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}

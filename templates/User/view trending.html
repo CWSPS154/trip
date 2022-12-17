@@ -1,0 +1,100 @@
+{% include 'User/header.html' %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!-- <script src="src/bootstrap-rating-input.js"></script> -->
+    <script src="../../static/rating/build/bootstrap-rating-input.min.js"></script>
+<li><a href="/">Home</a></li>
+<li class="active">
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<center>
+<aside id="colorlib-hero">
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background-image: url(../static/user/images/trending.jpeg);">
+            <div class="overlay"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                  <div class="slider-text-inner text-center">
+                    <h1>Trendings</h1>
+                    <h2><span><a href="/">Home</a> | <a href="/View_Packages">Package</a></span></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </aside>
+    <div class="row animate-box">
+    <div id="colorlib-intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 intro-wrap">
+            <div class="intro-flex"></div>
+            </div>
+          <div class="col-md-12">
+            <div class="about-desc animate-box">
+              {% if ln==1 %}
+    <h2>No Trendings</h2>
+          {% else %}
+      {% for row in val %}
+          <div class="col-md-6 animate-box">
+            <div class="classes"><div align="left">{{ row['ctgory'] }}</div>
+              <a class="classes-img" href="https://maps.google.com/?q={{ row['latitude'] }},{{ row['longitude'] }}" style="background-image: url(../../static/pimages/{{ row['photo'] }});" title="Click the image to view location" target="_blank">
+                <span class="price text-center"><small>₹{{ row['amount'] }}</small></span>
+              </a><div align="left"><a href="/rating2?pid={{ row['package_id'] }}"  title="Click Here To Rate The Package">
+                <span><big><input type="number" readonly="readonly" name="Review" id="rating1" class="rating" value="{{ row['round(avg(rating.rating),0)'] }}" /></big></span></a>
+              <span><a href="/View_agency?id={{ row['agency_id'] }}" title="Click Here To View Agency Profile">{{ row['agency_name'] }}</a></span></div>
+              <div class="desc">
+                <h3><div>{{ row['package_name'] }}</div></h3>
+                <p>{{ row['Decptn'] }}</p><hr>
+                <a href="/Enquiry?pid={{ row['package_id'] }}" class="btn-learn"><input class="btn btn-primary btn-outline btn-lg" type="button" value="Enquire Now"></a>
+                {% if session['type']=='user'  %}
+                <a href="/Book_Enquiry?pid={{ row['package_id'] }}" class="btn-learn"><input class="btn btn-primary btn-lg" type="button" value="Book Now"></a>
+                {% else %}
+                <a href="/login" class="btn-learn"><input class="btn btn-primary btn-lg" type="button" value="Book Now"></a><hr>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}{%endif%}
+</form></center>
+
+{% include 'User/footer.html' %}
+

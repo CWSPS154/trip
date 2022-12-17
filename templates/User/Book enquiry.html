@@ -1,0 +1,109 @@
+{% include 'User/header.html' %}
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<center>
+  <form id="form1" name="form1" method="post" action="/Book_Enquiry_Now?pid={{ pid }}">
+        <!-- <div class="colorlib-classes"> -->
+  <!-- <div class="colorlib-classes"> -->
+      <section style="background-image: url(../static/user/images/book_now.jpeg);">    
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="row row-pb-lg">
+              <div class="col-md-12 animate-box">
+                <div class="classes class-single"><br><br>
+            <div class="row animate-box" style="background-color: white;">
+              <div class="col-md-12">
+                <h1 class="colorlib-heading-2"><br>Book Now<hr></h1>
+                  <div class="row form-group">
+                    <div class="col-md-6">
+                      <!-- <label for="fname">First Name</label> -->
+                      {% if val %}
+                      <input name="name" type="text" class="form-control" readonly="readonly" value="{{ val['username'] }}">{% else %}
+                      <input name="name" required="required" type="text" class="form-control" placeholder="Enter Your Name">
+                      {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <label for="lname">Last Name</label> -->
+                      {% if val %}
+                      <input type="text"  class="form-control" name="phno" id="phno" readonly="readonly" value="+91 {{ val['mobile_number']}}">{% else %}
+                      <input required="required" name="phno" id="phno" type="text" class="form-control" placeholder="Enter Your Number">{% endif %}
+                    </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="email">Email</label> -->
+                      {% if val %}
+                      <input name="mail" id="mail" readonly="readonly" value="{{ val['mail'] }}" type="text"  class="form-control" >{% else %}
+                      <input name="mail" id="mail" type="mail" class="form-control" placeholder="Enter Email">{% endif %}
+                    </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <div class="col-md-4">
+                      <!-- <label for="fname">First Name</label> -->
+                      <input type="text" required="required" name="Adults" id="Adults" class="form-control" placeholder="Adults">
+                    </div>
+                    <div class="col-md-4">
+                      <!-- <label for="lname">Last Name</label> -->
+                      <input type="text" required="required" name="kids" id="kids" class="form-control" placeholder="Kids">
+                    </div>
+                  <div class="col-md-4">
+                      <!-- <label for="lname">Last Name</label> -->
+                      <input type="date" required="required" name="date" id="date" min="{{ d }}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="message">Message</label> -->
+                      <textarea name="add" required="required" id="add" cols="30" rows="10" class="form-control" placeholder="Say something about your needs"></textarea>
+                    </div>
+                  </div><input type="hidden" name="pid" value="{{ pid }}"/>
+                  <div class="form-group">
+                    <input name="Sendmsg"  id="Sendmsg" type="submit" value="Continue" class="btn btn-primary">
+                  </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div></section>
+</form></center>
+{% include 'User/footer.html' %}
+

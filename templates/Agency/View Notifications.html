@@ -1,0 +1,38 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1087" border="0">
+    <tr>
+      <td width="1077"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-bell"></i><br>
+          Notifications</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="937" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+      {% if ln==1 %}
+    <h2>No Notification</h2>
+          {% else %}
+    <tr>
+      <td><div align="center"><strong>No.</strong></div></td>
+      <td><div align="center"><strong>Notifications</strong></div></td>
+      <td><div align="center"><strong>Date</strong></div></td>
+      <!-- <td>&nbsp;</td> -->
+    </tr>
+    {% for row in data %}
+    <tr>
+      <td><div>{{ loop.index}}</div></td>
+      <td><div>{{ row['notfcn_ctnt']}}</div></td>
+      <td><div>{{ row['date']}}</div></td>
+      <!-- <td><div align="center"><a href="/view_notdlt1?id={{ row['notfcn_id']}}"><input class="btn btn-danger" type="button" value="Delete"></a></div></td> -->
+    </tr>
+      {% endfor %}{%endif%}
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

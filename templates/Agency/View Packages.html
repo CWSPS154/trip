@@ -1,0 +1,53 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+  <form id="form1" name="form1" method="post" action="">
+    <table width="1069" border="0">
+    <tr>
+      <td width="1060"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="icon ion ion-bag"></i><br>
+          Packages</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+    <table width="937" border="1" class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+      {% if ln==1 %}
+    <h2>No Packages</h2>
+          {% else %}
+      <tr>
+        <td width="11" height="61"><p align="center"><strong>No.</strong></p></td>
+      <td width="143"><div align="center"><strong>Pacakage Name</strong></div></td>
+      <td width="69"><div align="center"><strong>Location</strong></div></td>
+      <td width="81"><div align="center"><strong>Category</strong></div></td>
+      <td width="88"><div align="center"><strong>Description</strong></div></td>
+      <td width="72"><div align="center"><strong>Amount</strong></div></td>
+      <td width="87"><div align="center"><strong>Status</strong></div></td>
+      <td width="87">&nbsp;</td>
+    </tr>
+         {% for row in val %}
+    <tr>
+      <td height="59"><div align="center">{{ loop.index}}</div></td>
+      <td><div align="center">{{ row['package_name']}}</div></td>
+      <td><div align="center"><img src="static/pimages/{{ row['photo'] }}" width="150" height="150" alt="No image"/><a href="https://maps.google.com/?q={{ row['latitude'] }},{{ row['longitude'] }}" target="_blank"><br>Click to view Location</a></div></td>
+      <td><div align="center">{{ row['ctgory']}}</div></td>
+      <td><div align="center">{{ row['Decptn']}}</div></td>
+      <td><div align="center">₹ {{ row['amount']}}</div></td>
+      <td><div align="center">{{ row['type']}}</div></td>
+        <td>
+          <!-- <p align="center"><a class="btn btn-info btn-sm" href="/Add_Package?id={{ row['package_id']}}"><i class="fas fa-pencil-alt"> Edit</i></a></p> -->
+            <p align="center"><a href="/Remove_Package?id={{ row['package_id']}}"><input class="btn btn-danger" type="button" value="Remove"></a></p>
+                </td>
+    </tr>
+        {% endfor %}{%endif%}
+    </p></table>
+    <p><a href="/location"><input class="btn btn-primary" type="button" value="Add More Packages"></a></p>
+</form></center>
+
+
+{% include 'Agency/agency_footer.html' %}
+
+

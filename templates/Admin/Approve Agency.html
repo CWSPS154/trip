@@ -1,0 +1,72 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+  <form id="form1" name="form1" method="post" action="/Approve_Agency2">
+  <div align="left"></div>
+  <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-user"></i><br>Agencies</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+   <table width="300" border="0">
+          <tr>
+            <td> <div align="right">
+              <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input name="Search" class="form-control form-control-navbar" type="search" placeholder="Agency Name" aria-label="Search">
+        <div class="input-group-append">
+          <button name="Send" class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+             </div></td>
+  </table><p>
+  <table width="1179" height="430" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Matching</h2>
+          {% else %}
+      <td><div align="center"><strong>Agency Name</strong></div></td>
+      <td><div align="center"><strong>Licence</strong></div></td> 
+      <td><div align="center"><strong>Address</strong></div></td>
+      <td><div align="center"><strong>Mobile Number</strong></div></td>
+      <td><div align="center"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Validity&nbsp;&nbsp;&nbsp;</strong></div></td>
+      <td><div align="center"><strong>E-mail</strong></div></td>
+      <td>&nbsp;</td></tr>
+  
+       {% for row in val %}
+    <tr>
+      <td><div align="center"><img src="../../static/licence/cover/{{ row['cover'] }}" width="180" height="180"/><strong>{{ row['agency_name']}}</strong>&nbsp;</div></td>
+      <td><div align="center"><a href="../../static/licence/{{ row['photo'] }}"><img src="../../static/licence/{{ row['photo'] }}" width="180" height="180"/>LIC.No:{{ row['lic_no']}}&nbsp;</a></div></td>
+      <td><div align="center">{{ row['place']}}<br>
+       {{ row['postoffice']}} P O
+     PIN:{{ row['pin']}}&nbsp;</div></td>
+      <td><div align="center">{{ row['mob_no']}}&nbsp;</div></td>
+      {%if row['date']==None %}
+      <td><div align="center">NOT PAYED&nbsp;</div></td>
+      {%else%}
+      <td><div align="center">From<br>{{ row['date']}} <br> to <br> {{ row['exp_date']}}&nbsp;</div></td>
+      {%endif%}
+      <td><div align="center"><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ row['email']}}" target="_blank">{{ row['email']}}&nbsp;</a></div></td>
+      <td width="268"><div align="center">{% if row['type']=='pending' %}</div>
+        <p align="center"><a href="/Approve_Agency1?id={{ row['agency_id'] }}"><input class="btn btn-primary" type="button" value="Approve"></a></p>
+      <p align="center"><a href="/Reject_Agency?id={{ row['agency_id']}}"><input class="btn btn-danger" type="button" value="Remove"></a></p>
+      <div align="center">{% else %}</div>
+      <p align="center"><a href="/Reject_Agency?id={{ row['agency_id']}}"><input class="btn btn-danger" type="button" value="Remove"></a></p>
+      <div align="center">{% endif %}</div></td>
+
+    </tr>
+
+      {% endfor %}{%endif%}
+</table>
+</form>
+</center>
+
+{% include 'Admin/admin_footer.html' %}

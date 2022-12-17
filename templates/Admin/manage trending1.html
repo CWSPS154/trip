@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<center>
+<form id="form1" name="form1" method="post" action="/Manage_Trending1">
+  <table width="389" border="0">
+    <tr>
+      <td width="379"><div align="center">
+        <h1><u>Trending Management</u></h1>
+        <table width="244" border="0">
+          <tr>
+            <td width="105">Category</td>
+            <td width="123"><label for="ctgry"></label>
+              <select name="ctgry" id="ctgry">
+              <option>--select--</option>
+                  {% for row in vall %}
+                  <option value="{{ row['package_id'] }}">{{ row['ctgory'] }}</option>
+                  {% endfor %}
+              </select></td>
+            <td>
+            <input name="Send" type="submit" id="Send" value="Search" />
+
+            </td>
+          </tr>
+        </table>
+        <p><u></u></p>
+      </div></td>
+    </tr>
+  </table>
+  <table width="263" border="1">
+    <tr>
+      <td width="9"><div align="center">#</div></td>
+      <td width="99"><div align="center">Package Name</div></td>
+      <td width="52"><div align="center">Rating</div></td>
+      <td width="75"><div align="center"></div></td>
+    </tr>
+
+       {% for row in val %}
+    <tr>
+      <td height="67">{{ loop.index}}&nbsp;</td>
+      <td>{{ row['package_name']}}</td>
+
+           {% if row['package_id'] in rating %}
+
+           {% for r in rating %}
+
+               {% if row['package_id'] == r['pidd'] %}
+
+                            <td>&nbsp;{{ row['rating']}}</td>
+                {% else %}
+               {% endif %}
+
+           {% endfor %}
+
+           {% else %}
+
+                 <td>0</td>
+
+
+           {% endif %}
+           {% if row['pid']!=row['package_id']%}
+      <td><p align="center"><a href="/Post_Trending?id={{ row['package_id'] }}">Post</a></p>
+      {% endif %}
+          {% if row['pid']==row['package_id']%}
+     <td> <p align="center"><a href="/Reject_Trending?id={{ row['package_id'] }}">Reject</a></p></td>
+           {% endif %}
+       {% endfor %}
+    </tr>
+</table>
+</form>
+</center>
+</body>
+</html>

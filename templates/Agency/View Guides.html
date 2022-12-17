@@ -1,0 +1,58 @@
+<p>{% include 'Agency/agency_header.html' %}
+
+</p>
+<center>
+  <form id="form1" name="form1" method="post" action="/Guides">
+<table width="1079" border="0">
+    <tr>
+      <td width="1067"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-user"></i><br>
+          Guides</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="894" border="1"class="table table-bordered table-hover>
+    <tr>
+       <td width="113">
+        {% if ln==1 %}
+    <h2>No Guides Added</h2>
+          {% else %}
+      <tr>
+        <td width="77"><div align="center"><strong>No.</strong></div></td>
+        <td width="150"><div align="center"><strong>Guide</strong></div></td>
+        <td width="114"><div align="center"><strong>Contacts</strong></div></td>
+        <td width="106"><div align="center"><strong>Experince</strong></div></td>
+        <td width="98"><div align="center"><strong>Languges</strong></div></td>
+        <td width="88"><div align="center"><strong>Status</strong></div></td>
+      </tr>
+      {% for row in data %}
+    <tr>
+      <td><div align="center">{{ loop.index }}</div></td>
+      <td><div align="center"><img src="../../static/guidephoto/{{ row['photo'] }}" width="150" height="150"/><br><strong>{{ row['guide_name'] }}</strong></div></td>
+      <td><div align="center">
+        <p>Email:<a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ row['email_id'] }}" target="_blank">{{ row['email_id'] }}</a></p>
+        <p>Mob:{{ row['mob_no'] }}</p>
+      </div></td>
+      <td><div align="center">{{ row['G_exp'] }} Years</div></td>
+      <td><div align="center">{{ row['Kn_lng'] }}</div></td>
+      <td><div align="center">{{ row['status'] }}</div></td>
+      <td width="162"><div align="center">
+        <!-- <p><a href="/Remove_Guide?id={{ row['guide_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></p> -->
+          {% if row['status']=='Allocated' %}
+        <p><a href="/f_Guide?id={{ row['guide_id'] }}"><input class="btn btn-primary" type="button" value="Make Free"></a></p>
+          {% elif row['status']=='Requested' and data1!= None %}
+          <p><a href="/Allocate?gid={{ row['guide_id'] }}&bid={{ data1 }}&uid={{ uid }}"><input class="btn btn-primary" type="button" value="Allocate"></a></p>
+          {% elif row['status']!='Requested' or data1== None %}
+          <p><a href="/Remove_Guide?id={{ row['guide_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></p>
+          {% endif %}
+      </div></td>
+    </tr>
+      {% endfor %}{%endif%}
+  </table>
+  {% if data1== None %}
+  <p><a href="/Add_Guides"><input class="btn btn-primary" type="button" value="Add More Guides"></a></p>
+  {% endif %}
+  </form></center>
+{% include 'Agency/agency_footer.html' %}

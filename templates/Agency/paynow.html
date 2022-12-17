@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+function valid()
+
+{
+    var flag=true;
+
+    if((document.getElementById("pname").value).length!=16)
+    {
+                    flag=false;
+            document.getElementById("crd").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("crd").style.visibility="hidden";
+    }
+    if((document.getElementById("exp").value).length!=2)
+    {
+                    flag=false;
+            document.getElementById("dt").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("dt").style.visibility="hidden";
+    }
+    if((document.getElementById("yy").value).length!=4)
+    {
+                    flag=false;
+            document.getElementById("y").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("y").style.visibility="hidden";
+    }
+
+    if((document.getElementById("accno").value).length!=3)
+    {
+                    flag=false;
+            document.getElementById("cv").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("cv").style.visibility="hidden";
+    }
+     return flag;
+}
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account Registration</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../static/registration/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../static/registration/css/style.css">
+</head>
+<body>
+    <div class="main">
+
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+<form id="form1" name="form1" method="post" action="/paynow1">
+<!-- <div class="colorlib-classes"> -->
+    <h2 class="form-title">PAY NOW</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="row row-pb-lg">
+              <div class="col-md-12 animate-box">
+                <div class="classes class-single">
+            <div class="row animate-box">
+              <div class="col-md-12">
+                <form action="#">
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="fname">First Name</label> --> 
+                      <input readonly="readonly" type="text" id="fname" class="form-control" value="{{ data['agency_name'] }}">
+                    </div>
+                </div>
+                    <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="lname">Last Name</label> -->
+                      <input readonly="readonly" type="text" id="lname" class="form-control" value="+91 {{ data['mob_no'] }}">
+                    </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="email">Email</label> -->
+                      <input readonly="readonly" type="text" id="email" class="form-control" value="Account Registration">
+                    </div>
+                  </div>
+                     <input type="hidden" name="amt" id="amt" value="{{ data['amount'] }}"/>
+          <input type="hidden" name="pkid" id="pkid" value="{{ data['package_id'] }}" />
+                  <div class="col-6">
+                  <img src="../../static/dist/img/credit/visa.png" alt="Visa">
+                  <img src="../../static/dist/img/credit/mastercard.png" alt="Mastercard">
+                  <img src="../../static/dist/img/credit/paypal2.png" alt="Paypal"></div><br>
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="subject">Subject</label> -->
+                      <input type="Number" name="pname" size="16" id="pname" required="required" class="form-control" placeholder="Enter Card Number" title="Enter valid card number">
+                      <div align="left" id="crd" style="visibility: hidden"><font color="red"><i>Enter valid number  </i></font></div>
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-4">
+                      <!-- <label for="subject">Subject</label> -->
+                      <input type="Number" name="exp"  id="exp" required="required" class="form-control" placeholder="Month">
+                      <div align="left" id="dt" style="visibility: hidden"><font color="red"><i>Enter valid date  </i></font></div>
+                    </div>
+                    <div class="col-md-4">
+                      <!-- <label for="subject">Subject</label> -->
+                      <input type="Number" name="yy" id="yy" required="required" class="form-control" placeholder="Year">
+                      <div align="left" id="y" style="visibility: hidden"><font color="red"><i>Enter valid month  </i></font></div>
+                    </div>
+                    <div class="col-md-4">
+                      <!-- <label for="subject">Subject</label> -->
+                      <input type="Number" name="accno"  id="accno" required="required"  class="form-control" placeholder="CVV">
+                      <div align="left" id="cv" style="visibility: hidden"><font color="red"><i>Enter valid CVV  </i></font></div>
+                    </div></div>
+                    <!-- <div class="btn btn-primary"><strong>₹</strong> {{ data['amount'] }}</div>  -->
+                  <div class="form-group"><h3 align="center">₹ 999/year<br><br>
+                    <input type="submit" name="pay" value="Pay" onclick="return valid()" class="btn btn-primary"></h3>
+                  </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+</form></center></div></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="../static/registration/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/registration/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

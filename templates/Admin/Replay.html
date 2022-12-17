@@ -1,0 +1,32 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="/reply1/{{ data }}/{{ aid }}">
+    <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center">Reply</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+      <table  border="0">
+    <tr>
+      <td><label for="Reply"></label>
+      <textarea cols="100" rows="10" class="form-control form-control-navbar"form-control form-control-navbar name="Reply" id="Reply" cols="45" rows="5"></textarea></td>
+    </tr>
+  </table>
+  <table width="200" border="0">
+    <tr>
+      <td><div align="center">
+        <button name="Send" id="Send" type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
+       <!--  <input name="Send" type="submit" id="Send" value="Send" /> -->
+      </div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}
+

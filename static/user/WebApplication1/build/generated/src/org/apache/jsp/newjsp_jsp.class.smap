@@ -1,0 +1,18 @@
+SMAP
+newjsp_jsp.java
+JSP
+*S JSP
+*F
++ 0 newjsp.jsp
+newjsp.jsp
++ 1 bankheader.jsp
+bankheader.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+5,4:50
+1#1,207:53
+8#0,24:260
+1#2,71:283
+31#0:353
+*E

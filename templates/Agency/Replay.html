@@ -1,0 +1,24 @@
+{% include 'Agency/agency_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="/reply1/{{ data }}">
+  <p>&nbsp;</p>
+  <table width="200" border="0">
+    <tr>
+      <td>Reply:</td>
+      <td><label for="Reply"></label>
+      <textarea name="Reply" id="Reply" cols="45" rows="5"></textarea></td>
+    </tr>
+  </table>
+  <table width="200" border="0">
+    <tr>
+      <td><div align="center">
+        <input name="Send" type="submit" id="Send" value="Send" />
+      </div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form></center>
+
+{% include 'Agency/agency_footer.html' %}
+

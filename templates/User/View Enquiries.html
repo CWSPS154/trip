@@ -1,0 +1,85 @@
+{% include 'User/header.html' %}
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                               <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<form id="form1" name="form1" method="post" action=""><center>
+<center>
+<aside id="colorlib-hero">
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background-image: url(../../../static/user/images/enquiry.jpeg);">
+            <div class="overlay"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                  <div class="slider-text-inner text-center">
+                    <h1>My Enquiries</h1>
+                    <h2><span><a href="/">Home</a> | <a href="/View_Packages">Package</a></span></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </aside> 
+    <div class="colorlib-blog colorlib-light-grey">
+            <div class="container">
+              {% if ln==1 %}
+    <h2>No Enquiries</h2>
+          {% else %}
+                {% for row in data %}
+                <div class="row">
+                    <div class="col-md-4 animate-box">
+                        <article class="article-entry">
+                            <a  class="blog-img" href="https://maps.google.com/?q={{ row['latitude'] }},{{ row['longitude'] }}" style="background-image: url(../../../static/pimages/{{ row['photo'] }});" title="Click the image to view location" target="_blank">
+                                <p class="meta"><span class="month">{{ row['created_at'] }}</span><span class="day">{{ row['status'] }}</span><span class="month"><font color="red"> ₹{{ row['amount'] }}/Head</font></span></p>
+                            </a>
+                            <div class="desc">
+                                <h2>{{ row['package_name'] }}</h2><hr>
+                                <p class="admin"><span><a href="/View_agency?id={{ row['agency_id'] }}">{{ row['agency_name'] }}</a></span></p><hr>
+                                <p class="admin"><span>Package Details</span></p><p>{{ row['Decptn'] }}<hr></p>
+                                <p class="admin"><span>Our Details</span></p><p>{{ row['details'] }}</p>
+                                <p class="admin">Adults:{{ row['adults'] }} Kids:{{ row['kids'] }}</p>
+                                <p class="admin"><span>Booked Date</span> {{ row['date'] }}</p><hr>
+  <a href="/Send_Complaints?id={{ row['agency_id'] }}" class="btn-learn"><input class="btn btn-primary btn-outline btn-lg" type="button" value="Send Complaint"></a><a href="/feedback?id={{ row['agency_id'] }}" class="btn-learn"><input class="btn btn-primary btn-outline btn-lg" type="button" value="Send Feedback"></a>
+                            </div>
+                        </article>
+                    </div>{% endfor %}
+                    {%endif%}
+</center>
+</form>
+{% include 'User/footer.html' %}

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Invoice
+                <strong>{{ data['date']}}</strong>
+                <span class="float-right"><strong>ID:</strong>{{ data['payment_id']}}</span>
+
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">From:</h6>
+                        <div>
+                            <strong>{{ data['agency_name']}}</strong>
+                        </div>
+                        <div>{{ data['aplace']}}</div>
+                        <div>{{ data['apo']}} P O,PIN: {{ data['apin']}}</div>
+                        <div>Email: {{ data['email']}}</div>
+                        <div>Phone: +91 {{ data['mob_no']}}</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">To:</h6>
+                        <div>
+                            <strong>{{ data['username']}}</strong>
+                        </div>
+                        <div>{{ data['place']}}</div>
+                        <div>{{ data['postoffice']}} P O,PIN: {{ data['pin']}}</div>
+                        <div>Email: {{ data['mail']}}</div>
+                        <div>Phone: +91 {{ data['mobile_number']}}</div>
+                    </div>
+                </div>
+
+                <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="center">Sl.No</th>
+                                <th>Item</th>
+                                <th>Description</th>
+
+                                <th class="right">Amount/Head</th>
+                                <th class="center">trvlrs</th>
+                                <th class="right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="center">1</td>
+                                <td class="left strong">Package fee</td>
+                                <td class="left">{{ data['package_name']}}</td>
+
+                                <td class="right">₹ {{ data['amt']}}</td>
+                                <td class="center">{{ data['adults']}} Adults & {{ data['kids']}} Kids</td>
+                                <td class="right">₹ {{ tamt }}</td>
+                            </tr>  
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-sm-1 ml-auto"><br><br>
+                        <div style="background-color: lightblue;">
+                            Guides are free for the user(if booked)
+                            and 10% discount for Adults(More than 20 Adults)
+                            and 20% discount for Kids(More than 10 Kids )
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-5 ml-auto">
+                        <table class="table table-clear">
+                            <tbody>
+                                <tr>
+                                    <td class="left">
+                                        <strong>Subtotal</strong>
+                                    </td>
+                                    <td class="right">₹ {{ tamt }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong>Discount (10%-20%)</strong>
+                                    </td>
+                                    <td class="right">₹ {{ damt }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="right">
+                                        <strong>₹ {{ data['amount'] }}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table><div align="center">
+                        <a onclick="window.print()" class="btn btn btn-lg"><span class="glyphicon glyphicon-print"></span><br>Print</a>
+                        <button class="btn btn-defaultbtn-outline btn-lg"><a href="/view_bookings">Continue</a></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

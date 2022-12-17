@@ -1,0 +1,41 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1087" border="0">
+    <tr>
+      <td width="1098"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-book"></i><br>
+          Booking Management</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="937" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+{% if ln==1 %}
+    <h2>No Bookings</h2>
+    {% else %}
+    <tr>
+      <td width="10"><div align="center"><strong>Date</strong></div></td>
+      <td width="108"><div align="center"><strong>Package Name</strong></div></td>
+      <td width="108"><div align="center"><strong>Booked Date</strong></div></td>
+      <td width="69"><div align="center"><strong>Amount/H</strong></div></td>
+      <td width="88"><div align="center"></div></td>
+    </tr>
+      {% for row in data %}
+    <tr>
+      <td height="45"><div align="center">{{ row['date'] }}</div></td>
+      <td> <div align="center">{{ row['package_name'] }} </div>        <div align="center"></div></td>
+      <td><div align="center">{{ row['bk_date'] }}</div></td>
+      <td><div align="center">₹ {{ row['amount']}}</div></td>
+      <td><div align="center"><a href="/Booking2?id={{ row['bk_id'] }}&pid={{ row['package_id'] }}">View More</a></div></td>
+    </tr>
+      {% endfor %}
+{% endif %}
+  </table>
+
+</form></center>
+{% include 'Agency/agency_footer.html' %}

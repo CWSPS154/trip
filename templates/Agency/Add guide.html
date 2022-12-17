@@ -1,0 +1,90 @@
+{% include 'Agency/agency_header.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<center>
+  <script>
+function valid()
+
+{
+    var flag=true;
+
+    if((document.getElementById("cntct").value).length!=10)
+    {
+                    flag=false;
+            document.getElementById("mobno").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("mobno").style.visibility="hidden";
+    }
+    return flag;
+}
+</script>
+<form action="/Add_Guides1" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div class="col-md-6"><div class="card card-primary">
+  <table width="272" border="0">
+    <tr>
+      <div class="card-header">
+                <h3 class="card-title">Add Guide</h3>
+              </div>
+    </tr>
+  </table><div class="card-body">
+  <table width="401" border="0">
+    <tr>
+       <div class="form-group">
+                   <label for="exampleInputEmail1">Guide Name</label>
+                   <input name="gname" id="gname" type="text" required="required" class="form-control" placeholder="Guide Name">
+       </div> 
+    </tr>
+    <tr>
+      <div class="form-group">
+                   <label for="exampleInputEmail1">Contact</label>
+                   <input name="cntct" id="cntct" type="Mobile" required="required" pattern="[6-7-8-9]{1}[0-9]{9}" 
+       title="Phone number starts with 6-7-8-9 and remaing 9 digit with 0-9" class="form-control" placeholder="Mobile Number">
+                   <div id="mobno" style="visibility: hidden"><font color="red"><i>  Enter 10 digit number  </i></font></div>
+       </div> 
+    </tr>
+    <tr>
+      <div class="form-group">
+                   <label for="exampleInputEmail1">Email</label>
+                   <input name="email" id="email" type="email" required="required" pattern="[^ @]*@[^ @]*" title="Enter valid Email" class="form-control" placeholder="Email">
+       </div> 
+    </tr>
+    <tr>
+       <div class="form-group">
+                   <label for="exampleInputEmail1">Guide Experiane</label>
+                   <input name="gexp" id="gexp" type="number" required="required" class="form-control" placeholder="Guide Experiane(Year)">
+       </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+                   <label for="exampleInputEmail1">Known Languages</label>
+                   <input name="klan" id="klan" type="text" required="required" class="form-control" placeholder="Languages">
+       </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+                    <label for="exampleInputFile">Images</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input name="img" type="file" required="required" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                      </div>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+        <input class="btn btn-primary" name="Add" type="submit" id="Add" onclick="return valid()"  value="Submit" />
+      </div></td>
+      </tr>
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

@@ -1,0 +1,132 @@
+{% include 'Agency/agency_header.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<center>
+<form action="/Add_Package1" method="post" enctype="multipart/form-data" name="form1" id="form1">
+          <div class="col-md-6"><div class="card card-primary">
+  <table width="498" border="0">
+    <tr>
+              <div class="card-header">
+                <h3 class="card-title">Add packages</h3>
+              </div>
+    </tr>
+  </table><div class="card-body">
+  <table width="354" border="0">
+    <tr>
+                  <div class="form-group">
+                    <!-- <label for="exampleInputEmail1">Location</label> -->
+                    <!-- <div class="form-control"> -->
+                    <!-- <a href="/location"><input class="btn btn-primary" required="required" type="button" value="Add Location" title="Click here to add location"></a> -->
+                    <input readonly="readonly" name="lan" type="hidden" required="required"  id="exampleInputEmail1" placeholder="lan" value="{{ pak['latitude'] }}">
+                    <input readonly="readonly" name="lon" type="hidden" required="required"  id="exampleInputEmail1" placeholder="lon" value="{{ pak['longitude'] }}">
+                    <!-- </div>  -->
+                  </div> 
+    </tr>
+    <tr>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Package Name</label>
+                    <input required name="PName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Package name with days" value="{{ pak['package_name'] }}">
+                  </div> 
+    </tr>
+
+    <tr>
+     
+        <div class="form-group">
+                    <label  for="exampleInputPassword1">Catagory</label>
+         {% if pak['ctgory']=='Family' %}
+       <select class="form-control" name="ctgry" id="ctgry" >
+              <option>Family</option>
+              <option>College</option>
+              <option>Honeymoon</option>
+              <option>Solo</option>
+              </select></div>
+        {% elif pak['ctgory']=='College' %}
+       <select class="form-control" name="ctgry" id="ctgry">
+              <option>College</option>
+              <option>Family</option>
+              <option>Honeymoon</option>
+              <option>Solo</option>
+              </select>
+      {% elif pak['ctgory']=='Honeymoon' %}
+       <select class="form-control" name="ctgry" id="ctgry">
+              <option>Honeymoon</option>
+              <option>College</option>
+              <option>Family</option>
+              <option>Solo</option>
+              </select>
+      {% elif pak['ctgory']=='Solo' %}
+       <select  class="form-control" name="ctgry" id="ctgry">
+              <option>Solo</option>
+              <option>Honeymoon</option>
+              <option>College</option>
+              <option>Family</option>
+              </select>
+      {% else %}
+       <select title="Select a catagory" class="form-control" name="ctgry" id="ctgry">
+              <option>-select-</option>
+              <option>College</option>
+              <option>Family</option>
+              <option>Honeymoon</option>
+              <option>Solo</option>
+              </select></div>
+      {% endif %}
+    </tr>
+    <tr>
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea class="form-control" required="required" name="dscptn" id="dscptn"  placeholder="Description" cols="45" rows="5">{{ pak['Decptn'] }}</textarea>
+                  </div>
+      <!-- <td>Description</td>
+      <td><label for="dscptn"></label>
+        <textarea name="dscptn" id="dscptn" cols="45" rows="5">{{ pak['Decptn'] }}</textarea> -->
+        <!-- <input type="text" name="dscptn" id="dscptn" value="{{ pak['Decptn'] }}" /> -->
+      <!-- </td> -->
+    </tr>
+    <tr>
+      <div class="form-group">
+                    <label for="exampleInputEmail1">Amount</label>
+                    <input type="text" required="required" class="form-control" name="amount" id="amount" value="{{ pak['amount'] }}" placeholder="₹ Amount per head">
+                  </div>
+      <!-- <td>Amount</td>
+      <td><label for="amount"></label>
+        <input type="text" name="amount" id="amount" value="{{ pak['amount'] }}"/></td> -->
+    </tr>
+    <tr>
+      <div class="form-group">
+                    <label for="exampleInputFile">Images</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input name="img" required="required" type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                      </div>
+      <!-- <td>Photo</td>
+      <td><label for="img"></label>
+        <input type="file" name="img" id="img" /></td>
+    </tr> -->
+    <tr>
+
+        {% if pak['package_id']!=None %}
+      <td colspan="2"><div align="center">
+        <input class="btn btn-primary" name="add" type="submit" id="add" value="Submit" />
+      </div></td>
+        {% elif pak['package_id']==None %}
+        <td colspan="2"><div align="center"><a href="/Update_Package?id={{ pak['package_id']}}">Update
+        </a>
+      </div></td>
+        {% else %}
+         <td colspan="2"><div align="center">
+        <input class="btn btn-primary" name="add" type="submit" id="add" value="Submit" />
+      </div></td>
+        {% endif %}
+      </tr></div></div></div>
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}

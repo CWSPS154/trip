@@ -1,0 +1,51 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+<form id="form1" name="form1" method="get" action="">
+  <table width="1087" border="0">
+    <tr>
+      <td width="1098"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-book"></i><br>
+          Booking Management</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="327" border="1" class="table table-bordered table-hover">
+    <tr>
+      <td width="127">Package Name</td>
+      <td width="184">{{ data['package_name'] }}</td>    </tr>
+    <tr>
+      <td>User Need</td>
+      <td>{{ data['details'] }}</td>
+    </tr>
+    <tr>
+      <td>Travellers</td>
+      <td>{{ data['adults'] }} Adults & {{ data['kids'] }} Kids</td>
+    </tr>
+    <tr>
+      <td>User name</td>
+      <td>{{ data['username'] }}</td>
+    </tr>
+    <tr>
+      <td>Mobile Number</td>
+      <td>{{ data['mobile_number'] }}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ data['mail'] }}">{{ data['mail'] }}<a></td>
+    </tr>
+    <tr>
+     <td align="center" colspan="2"><div>
+      {%if data['guide_id'] != None %}
+      <a href="View_Guides?bid={{ data['bk_id'] }}&pid={{ pid }}&uid={{ data['user_id'] }}"><input class="btn btn-primary" type="button" value="Allocate guide"></a>
+      {%else%}
+      <a href="Allocate?bid={{ data['bk_id'] }}&uid={{ data['user_id'] }}"><input class="btn btn-primary" type="button" value="Allocate Booking"></a>
+      {%endif%}
+       <a href="/cbooking?bid={{ data['bk_id'] }}&gid={{ data['guide_id'] }}&uid={{ data['user_id'] }}"><input class="btn btn-danger" type="button" value="Cancel Booking"></a></div></td>
+    
+    </tr>
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

@@ -1,0 +1,64 @@
+{% include 'User/header.html' %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<form id="form1" name="form1" method="post" action="/Send_Complaints1">
+  <aside id="colorlib-hero">
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background-image: url(../static/user/images/feedback.jpeg);">
+            <div class="overlay"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-md-offset-0 slider-text">
+                  <div class="slider-text-inner text-center">
+                    <h1>Complaint</h1>
+                    <div class="row form-group">
+                    <div class="col-md-12">
+                      <!-- <label for="message">Message</label> -->
+                      <textarea name="cmplts" id="cmplts" cols="30" rows="10" required="required" class="form-control" placeholder="Enter Your Complaints about the agency"></textarea>
+                      <input class="btn btn-primary" name="Send" type="submit" id="Send" value="Send" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </aside></div>
+{% include 'User/footer.html' %}

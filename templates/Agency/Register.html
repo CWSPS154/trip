@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+function valid()
+
+{
+    var flag=true;
+
+    if((document.getElementById("mob").value).length!=10)
+    {
+                    flag=false;
+            document.getElementById("mobno").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("mobno").style.visibility="hidden";
+    }
+
+    if((document.getElementById("PIn").value).length!=6)
+    {
+                    flag=false;
+            document.getElementById("pin").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("pin").style.visibility="hidden";
+    }
+    if((document.getElementById("lino").value).length!=12)
+    {
+                    flag=false;
+            document.getElementById("lno").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("lno").style.visibility="hidden";
+    } 
+    if((document.getElementById("passwd").value).length<8)
+    {
+                    flag=false;
+            document.getElementById("psd").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("psd").style.visibility="hidden";
+    } 
+return flag;
+}
+var check = function() {
+  if (document.getElementById('passwd').value ==
+    document.getElementById('cp').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../static/registration/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../static/registration/css/style.css">
+</head>
+<body>
+    <div class="main">
+
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form action="/registration1" enctype="multipart/form-data" method="POST" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Register Your Agency</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-input" required="required" name="Aname" id="Aname" placeholder="Agency Name"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" required="required" name="Place" id="Place" placeholder="Place"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="type" class="form-input" name="PO" id="PO" required="required" placeholder="Post Office"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="Number" class="form-input" required="required" name="PIn" id="PIn" placeholder="PIN Code"/>
+                            <div id="pin" style="visibility: hidden"><font color="red"><i>  Enter 6 digit number  </i></font></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-input" pattern="[^ @]*@[^ @]*" title="Enter valid Email"  required="required" name="E-mail" id="E-mail" placeholder="E-mail"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="Number" class="form-input" required="required" name="mob" id="mob" pattern="[6-7-8-9]{1}[0-9]{9}" 
+       title="Phone number starts with 6-7-8-9 and remaing 9 digit with 0-9" placeholder="Mobile"/>
+                            <div id="mobno" style="visibility: hidden"><font color="red"><i>  Enter 10 digit number  </i></font></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" size="12" class="form-input" required="required" name="lino" id="lino" placeholder="Licence No."/>
+                            <div id="lno" style="visibility: hidden"><font color="red"><i>  Enter 12 digit number  </i></font></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" name="img" id="img" required="required">
+                              <label class="custom-file-label" for="customFile">Upload Licence</label>
+                            </div>
+                            <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                            <!-- Upload Licence
+                            <input type="file" name="img" id="img" required="required" class="form-submit"/> -->
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" name="cvr" id="cvr" required="required">
+                              <label class="custom-file-label" for="customFile">Upload Cover Photo</label>
+                              <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                            </div>
+                        <!-- Upload Photo
+                            <input type="file" name="cvr" id="cvr" required="required" class="form-submit"/> -->
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-input" name="passwd" id="passwd" onkeyup='check();' required="required" pattern="/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g" placeholder="Password"/>
+                            <span toggle="#passwd" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            <div id="psd" style="visibility: hidden"><font color="red"><i>  Enter 8 characters minimum  </i></font></div> 
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-input" name="cp" id="cp" onkeyup='check();' required="required" placeholder="Confirm Password"/>
+                            <span id='message'></span> 
+                        </div>
+                        <!-- <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                        </div> -->
+                        <div class="form-group">
+                            <input type="submit" name="Register" id="Register" onclick="return valid()" class="form-submit" value="Register"/>
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a href="/login" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="../static/registration/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/registration/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

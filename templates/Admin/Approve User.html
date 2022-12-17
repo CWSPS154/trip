@@ -1,0 +1,61 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="/View_user1">
+  <table width="1085" border="0">
+    <tr>
+      <td width="778"><div align="center">
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-users"></i><br>Users</h1>
+      </div></div>
+      </div></td>
+    </tr> </table>
+     <table width="300" border="0">
+          <tr>
+            <td> <div align="right">
+              <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input name="Search" class="form-control form-control-navbar" type="search" placeholder="User Name" aria-label="Search">
+        <div class="input-group-append">
+          <button name="Send" class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+             </div></td>
+  </table><p>
+  <table width="578" border="1" class="table table-bordered table-hover>
+     <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Matching</h2>
+          {% else %}
+      <td width="83"><div align="center"><strong>Username</strong></div></td>
+      <td width="61"><div align="center"><strong>Adress</strong></div></td>
+      <td width="110"><div align="center"><strong>Mobile Number</strong></div></td>
+      <td width="54"><div align="center"><strong>E-Mail</strong></div></td>
+      <td width="42"><div align="center"><strong>Age</strong></div></td>
+      <td width="85">&nbsp;</td>
+    </tr>
+      {% for row in val %}
+    <tr>
+      <td height="44">
+        <div align="center"><a href="../../static/profilepic/{{ row['profile_pic'] }}"><img src="../../static/profilepic/{{ row['profile_pic'] }}" width="200" height="200"/><br><strong>{{ row['username']}}</strong></a></div></td>
+      <td>&nbsp;
+        <div align="center">{{ row['place']}}<br>{{ row['postoffice']}} P O <br>
+      {{ row['pin']}}</div></td>
+      <td>&nbsp;
+        <div align="center">+91 {{ row['mobile_number']}}</div></td>
+      <td>&nbsp;
+        <div align="center"><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ row['mail']}}" target="_blank">{{ row['mail']}}&nbsp;</a></div></td>
+      <td>&nbsp;
+        <div align="center">{{ row['dob']}}</div></td>
+      <td><p align="center"><a href="/Remove_user?id={{ row['userid'] }}"><input class="btn btn-danger" type="button" value="Remove"></a></p></td>
+        {% endfor %}{%endif%}
+    </tr></p>
+</table>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}

@@ -1,0 +1,64 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+  <form id="form1" name="form1" method="post" action="/Manage_Package1">
+    <table width="1069" border="0">
+    <tr>
+      <td width="1060"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon fas fa-table"></i><br>Manage Packages</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+    <table border="0"><tr>
+      <td><label for="agency"></label>
+        <select class="form-control form-control-navbar" name="Search" id="agency">
+            <option>--select agency--</option>
+                {% for row in slct %}
+              <option  value="{{ row['agency_name']}}">{{ row['agency_name']}}</option>
+                {% endfor %}
+        </select></td><td><br>
+          <button name="Send" class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </td>
+      </tr>
+    </table>
+    <div class="card-body">
+    <p>
+    <table width="937" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Packages</h2>
+          {% else %}
+      <td width="11" height="61"><p align="center"><strong>No.</strong></p></td>
+      <td width="143"><div align="center"><strong>Pacakage Name</strong></div></td>
+      <td width="50"><div align="center"><strong>Location</strong></div></td>
+      <td width="81"><div align="center"><strong>Category</strong></div></td>
+      <td width="88"><div align="center"><strong>Description</strong></div></td>
+      <td width="72"><div align="center"><strong>Amount</strong></div></td>
+      <td width="87">&nbsp;</td>
+    </tr>
+         {% for row in val %}
+    <tr>
+      <td height="59">{{ loop.index}}</td>
+      <td align="center">{{ row['package_name']}}</td>
+      <td align="center"><a href="https://maps.google.com/?q={{ row['latitude'] }},{{ row['longitude'] }}" target="_blank"><img src="../../static/pimages/{{ row['photo'] }}" width="150" height="150" alt="No image"/><br>click to view location</a></div></td>
+      <td align="center">{{ row['ctgory']}}</td>
+      <td align="center">{{ row['Decptn']}}</td>
+      <td align="center">₹ {{ row['amount']}}</td>
+      <td align="center">
+          {% if row['type']=='pending' %}
+          <p align="center"><a href="/Approve_Package?id={{ row['package_id'] }}&aid={{ row['agencyid'] }}"><input class="btn btn-primary" type="button" value="Approve"></a></p>
+      <p align="center"><a href="/Reject_Package?id={{ row['package_id']}}&aid={{ row['agencyid'] }}"><input class="btn btn-danger" type="button" value="Remove"></a></p>
+          {% else %}
+          <p align="center"><a href="/Reject_Package?id={{ row['package_id']}}&aid={{ row['agencyid'] }}"><input class="btn btn-danger" type="button" value="Remove"></a></p>
+          {% endif %}
+      </td>
+    </tr>
+        {% endfor %}{%endif%}
+      </p></div></table>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}

@@ -1,0 +1,54 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1085" border="0">
+    <tr>
+      <td width="1079"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="icon ion ion-bag"></i><br>
+          Enquiries</h1>
+      </div></div></div></td>
+    </tr>
+  </table><table width="976" height="140" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+      {% if ln==1 %}
+    <h2>No Enquiries</h2>
+    {% else %}
+    <tr>
+      <td width="90"><div align="center"><strong>User name</strong></div></td>
+      <td width="142"><div align="center"><strong>Pacakage Name</strong></div></td>
+      <td width="75"><div align="center"><strong>Mail</strong></div></td>
+      <td width="116"><div align="center"><strong>Count</strong></div></td>
+      <td width="77"><div align="center"><strong>Date</strong></div></td>
+      <td width="82"><div align="center"><strong>Details</strong></div></td>
+      <td width="94"><div align="center"><strong>Phone Number</strong></div></td>
+      <td width="103"><div align="center"><strong>Status</strong></div></td><td></td>
+    </tr>
+      {% for row in data %}
+    <tr>
+      <td><div align="center">{{ row['name'] }}</div></td>
+      <td><div align="center">{{ row['package_name'] }}</div></td>
+      <td><div align="center">{{ row['mail'] }}</div></td>
+      <td><div align="center">
+        <p>Adults:{{ row['adult'] }} Kids:{{ row['kids'] }}</p>
+      </div></td>
+      <td><div align="center">{{ row['date'] }}</div></td>
+      <td><div align="center">{{ row['details'] }}</div></td>
+      <td><div align="center">{{ row['phno'] }}</div></td>
+      <td><div align="center">{{ row['status'] }}</div></td>
+          {% if row['status']=='pending' %}
+      <td width="100"><div align="center"><a href="/Enquired?id={{ row['eid'] }}&uid={{ row['user_id'] }}"><input class="btn btn-primary" type="button" value="Make Enquired"></a><br><br>
+      <a href="/Edelete?id={{ row['eid'] }}&uid={{ row['user_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></div></td>
+          {% elif row['status']=='Enquired'  %}
+      <td width="100"><div align="center"><a href="/Edelete?id={{ row['eid'] }}&uid={{ row['user_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></div></td>
+          {% endif %}
+        {% endfor %}{%endif%}
+    </tr>
+    </tr>
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

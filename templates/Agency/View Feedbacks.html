@@ -1,0 +1,39 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+
+<form id="form1" name="form1" method="post" action="">
+  <table width="1087" border="0">
+    <tr>
+      <td width="1074"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-envelope"></i><br>
+          Feedbacks</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="937" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+      {% if ln==1 %}
+    <h2>No Feedbacks</h2>
+          {% else %}
+    <tr>
+      <td width="8"><div align="center"><strong>No.</strong></div></td>
+      <td width="103"><div align="center"><strong>User Name </strong></div></td>
+      <td width="78"><div align="center"><strong>Feedback</strong></div></td>
+      <td width="73"><div align="center"><strong>Date</strong></div></td>
+      </tr>
+   {% for row in data %}
+    <tr>
+      <td><div align="center">{{ loop.index}}</div></td>
+      <td><div align="center">{{ row['username']}}</div></td>
+      <td><div align="center">{{ row['fdbk']}}</div></td>
+      <td><div align="center">{{ row['date']}}</div></td>
+
+      </tr>
+      {% endfor %}{%endif%}
+</table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}

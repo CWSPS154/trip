@@ -1,0 +1,109 @@
+{% include 'Agency/agency_header.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+function valid()
+
+{
+    var flag=true;
+
+    if((document.getElementById("mob").value).length!=10)
+    {
+                    flag=false;
+            document.getElementById("Mob").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("Mob").style.visibility="hidden";
+    }
+     if((document.getElementById("pin").value).length!=6)
+    {
+                    flag=false;
+            document.getElementById("Pin").style.visibility="visible";
+    }
+     else
+    {
+       document.getElementById("Pin").style.visibility="hidden";
+    }
+     return flag;
+}
+</script>
+<center>
+<section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- Profile Image -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Profile</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <img src="../../static/licence/cover/{{ val['cover'] }}"
+                       alt="Agency Cover Photo" height="400" width="900" style="border:5px solid black">
+                </div><br>
+                <form action="profile1" enctype="multipart/form-data" method="post"><center>
+                 <div class="col-md-6">
+                  <div class="card card-primary">
+                  <div class="card-body">
+                  <table width="401" border="0">
+                    
+                    <tr><div style="border-style: solid;">
+                      <h3 class="profile-username text-center">{{ val['agency_name'] }}</h3>
+                <p class="text-muted text-center">
+                  <a href="../../static/licence/{{ val['photo'] }}">Lic.No:{{ val['lic_no'] }}</a></p>
+                <p>Email:{{ val['email'] }}</p>
+                <p>Expiry Date: {{ val['exp_date'] }} &nbsp;Remaining Days: {{ val['exp_date']-d }}</p></div>
+                    </tr><br>
+                    <tr>
+                       <div class="form-group">
+                                   <label for="exampleInputEmail1">Place</label><i class="nav-icon fas fa-edit"></i>
+                                   <input name="place" id="place" type="text" required="required" class="form-control" placeholder="Place" value="{{ val['place'] }}">
+                       </div> 
+                    </tr>
+                    <tr>
+                       <div class="form-group">
+                                   <label for="exampleInputEmail1">P O</label><i class="nav-icon fas fa-edit"></i>
+                                   <input name="po" id="po" type="text" required="required" class="form-control" placeholder="P O" value="{{ val['postoffice'] }}">
+                       </div> 
+                    </tr>
+                    <tr>
+                       <div class="form-group">
+                                   <label for="exampleInputEmail1">PIN</label><i class="nav-icon fas fa-edit"></i>
+                                   <input name="pin" id="pin" type="text" required="required" class="form-control" placeholder="PIN" value="{{ val['pin'] }}">
+                                   <div id="Pin" style="visibility: hidden"><font color="red"><i>  Enter 6 digit number  </i></font></div>
+                       </div> 
+                    </tr>
+                    <tr>
+                       <div class="form-group">
+                                   <label for="exampleInputEmail1">Mobile</label><i class="nav-icon fas fa-edit"></i>
+                                   <input name="mob" id="mob" type="text" required="required" class="form-control" placeholder="Mobile" value="{{ val['mob_no'] }}">
+                                   <div id="Mob" style="visibility: hidden"><font color="red"><i>  Enter 10 digit number  </i></font></div>
+                       </div> 
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                                      <label for="exampleInputFile">Update Cover</label>
+                                      <i class="nav-icon fas fa-edit"></i>
+                                      <div class="input-group">
+                                        <div class="custom-file">
+                                          <input name="img" type="file" class="custom-file-input" id="exampleInputFile">
+                                          <label class="custom-file-label" for="exampleInputFile">Choose a Cover Photo</label>
+                                          <script>
+                                              // Add the following code if you want the name of the file appear on select
+                                              $(".custom-file-input").on("change", function() {
+                                                var fileName = $(this).val().split("\\").pop();
+                                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                              });
+                                              </script>
+                                        </div>
+                      </tr>
+                    </table>
+                <input type="submit" class="btn btn-primary btn-block" onclick="return valid()" value="Submit"></a></div></div></div></div>
+            </center>
+            </form>
+{% include 'Agency/agency_footer.html' %}
+

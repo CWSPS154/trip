@@ -1,0 +1,67 @@
+{% include 'Agency/agency_header.html' %}
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1085" border="0">
+    <tr>
+      <td width="1079"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="icon ion ion-bag"></i><br>
+          Booked</h1>
+      </div></div></div></td>
+    </tr>
+  </table><table width="1027" height="210" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113">
+      </td>
+{% if ln==1 %}
+    <h2>No Bookings</h2>
+    {% else %}
+    <tr>
+      <td width="110"><div align="center"><strong>Date</strong></div></td>
+      <td width="105"><div align="center"><strong>User name</strong></div></td>
+      <td width="120"><div align="center"><strong>Pacakage Name</strong></div></td>
+      <td width="137"><div align="center"><strong>Contacts</strong></div></td>
+      <td width="101"><div align="center"><strong>Count</strong></div></td>
+      <td width="101"><div align="center"><strong>Booked Date</strong></div></td>
+      <td width="86"><div align="center"><strong>User needs</strong></div></td>
+      <td width="120"><div align="center"><strong>Guide Details</strong></div></td>
+      <td width="90"><div align="center"><strong>Payments Status</strong></div></td>
+    </tr>
+      {% for row in data %}
+    <tr>
+      <td><div align="center">{{ row['date'] }}</div></td>
+      <td><div align="center">{{ row['username'] }}</div></td>
+      <td><div align="center">{{ row['package_name'] }}</div></td>
+      <td><div align="center">
+       <strong>Email:</strong>{{ row['mail'] }}<br>
+        <strong>Mob:</strong>{{ row['mobile_number'] }}
+      </div></td>
+      <td><div align="center">
+        <p><strong>Adults:</strong>{{ row['adults'] }}<strong><br>Kids:</strong>{{ row['kids'] }}</p>
+      </div></td>
+      <td><div align="center">{{ row['bk_date'] }}</div></td>
+      <td><div align="center">{{ row['details'] }}</div></td>
+      <td><div align="center">
+        {%if row['guide_name']!=None %}
+        {{ row['guide_name'] }}<br>
+       <strong>Email:</strong>{{ row['email_id'] }}<br>
+       <strong>Mob:</strong>{{ row['mob_no'] }}
+       {%else%}
+       NOT ADDED
+       {%endif%}
+      </div></td>
+      {% if row['status']=='Payment pending' %}
+      <td><div align="center">{{ row['status'] }}</div></td>
+      {% elif row['status']=='Payed' %}
+      <td><div align="center"><a href="/receipt?uid={{ row['userid'] }}&pid={{ row['package_id'] }}&bid={{ row['bk_id'] }}" target="_blank" title="Click to View Receipt">{{ row['status'] }}</a></div></td>
+      {% else %}
+      <td><div align="center">{{ row['status'] }}</div></td>
+      {%endif%}
+             </tr>
+        {% endfor %}
+{% endif %}
+  </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

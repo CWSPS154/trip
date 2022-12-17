@@ -1,0 +1,88 @@
+{% include 'User/header.html' %}
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li class="active"><a href="/View_Reply">Replys</a></li>
+                    <li><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <aside id="colorlib-hero">
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background-image: url(../static/user/images/complaints.jpeg);">
+            <div class="overlay"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                  <div class="slider-text-inner text-center">
+                    <h1>Complaints & Replys </h1>
+                    <h2><span><a href="/">Home</a> | <a href="/Send_Complaints">Send Complaints</a></span></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </aside>
+      <div class="colorlib-event">
+      <div class="container">
+        {% if ln==1 %}
+    <h2>No Replys</h2>
+          {% else %}
+        {% for row in val %}
+        <div class="col-md-4 animate-box">
+            <div class="event-entry">
+              <div>
+                <h2><div>Complaint</div></h2>
+                <p>TO : {{ row['agency_name'] }}</p>
+                <p>{{ row['cmplt'] }}</p><hr>
+              </div><p>{{ row['date'] }}</p><hr>
+              <div>
+                <h2><div>Reply</div></h2>
+                {% if row['reply']=='pending' %}
+                <p>From : Admin</p>
+              <p>__ __ ____</p>
+              {% else %}
+                <p>{{ row['reply'] }}</p><hr>
+                {% endif %}
+              </div>{% if row['rdate']=='pending' %}
+              {% else %}
+              <p>{{ row['rdate'] }}</p>
+              {% endif %}
+            </div>
+          </div>
+      {% endfor %}{%endif%}</div></div>
+  </form></center>
+<{% include 'User/footer.html' %}

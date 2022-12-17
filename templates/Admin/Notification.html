@@ -1,0 +1,37 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="/Send_notification1">
+  <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-bell"></i><br>Notification</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+      <table width="200" border="0"><tr>
+        <td><label for="type"></label>
+          <div align="center">
+            <select class="form-control form-control-navbar"form-control form-control-navbar name="type" id="type">
+              <option>All</option>
+              <option>Agency</option>
+              <option>User</option>
+            </select>
+          </div></td>
+    </tr></table><table>
+    <tr>
+      <td><label for="ntfn"></label>
+       <textarea cols="100" rows="9" class="form-control form-control-navbar" name="ntfn" id="ntfn" cols="45" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td><div align="center">
+        <button name="Send" id="Send" type="submit" class="btn btn-primary">Send</button>
+<!--         <input name="Send" type="submit" id="Send" value="Send" />
+ -->      </div></td>
+    </tr>
+  </table>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}

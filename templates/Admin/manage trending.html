@@ -1,0 +1,61 @@
+{% include 'Admin/admin_header.html' %}
+
+<center>
+<form id="form1" name="form1" method="post" action="/Manage_Trending2">
+  <table width="1072" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-star"></i><br>Manage Trendings</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+        <table width="300" border="0">
+          <tr>
+            <td> <div align="right">
+              <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input name="Search" class="form-control form-control-navbar" type="search" placeholder="Package Name" aria-label="Search">
+        <div class="input-group-append">
+          <button name="Send" class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+             </div></td>
+  </table>
+  <div class="card-body">
+    <table width="263" border="1" class="table table-bordered table-hover>
+      <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Matching</h2>
+          {% else %}
+      <td><div align="center"><strong>No.</strong></div></td>
+      <td><div align="center"><strong>Package Name</strong></div></td>
+      <td><div align="center"><strong>Rating</strong></div></td>
+      <td><div align="center"></div></td>
+    </tr>
+
+       {% for row in val %}
+               
+    <tr>
+      <td height="67">{{ loop.index}}&nbsp;</td>
+      <td align="center"><img src="../../static/pimages/{{ row['photo'] }}" width="200" height="200" alt="No image"/><br><strong>{{ row['package_name']}}</strong></td>
+      <td align="center">&nbsp;{{ row['avg(rating.rating)']}}</td>
+      <td align="center">
+      {% if row['status'] =='pending' %}
+      <p align="center"><a href="/Post_Trending?id={{ row['package_id'] }}&aid={{ row['agencyid'] }}"><input class="btn btn-primary" type="button" value="Post"></a></p>
+          {% else %}
+      <p align="center"><a href="/Reject_Trending?id={{ row['package_id'] }}&aid={{ row['agencyid'] }} "><input class="btn btn-warning" type="button" value="Reject"></a></p>
+           {% endif %}
+            </td>
+       {% endfor %}{%endif%}
+    </tr></div>
+</table>
+</form>
+</center>
+
+{% include 'Admin/admin_footer.html' %}

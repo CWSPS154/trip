@@ -1,0 +1,97 @@
+{% include 'User/header.html' %}
+<li><a href="/">Home</a></li>
+<li>
+                  <a href="/Trending">Trending</a>
+                  
+                </li>
+                                <li class="has-dropdown">
+                  <a href="/View_Packages">Package</a>
+                  
+                </li>
+                 {% if session['type']=='user'  %}
+                                 <li class="has-dropdown">
+                  <a>My Cart</a>
+                  <ul class="dropdown">
+                    <li><a href="view_enquiries">My Enquiries</a></li>
+                    <li><a href="/view_bookings">My Bookings</a></li>
+                  </ul>
+                                <li class="has-dropdown">
+                  <a>Notification</a>
+                  <ul class="dropdown">
+                    <li><a href="/View_Reply">Replys</a></li>
+                    <li class="active"><a href="/Notification">Notification</a></li>
+                    
+                  </ul>
+                </li>
+                <li><a href="/Update_profile"><img src="../../../static/profilepic/{{ pic['profile_pic'] }}" alt="User Image" class="brand-image img-circle elevation-3"
+           style="opacity: .8" width="50" height="50" ></a>&nbsp;
+                <li class="btn-cta"><a href="/log_out"><span>log out</span></a></li>
+                {% elif session['type']!='user'  %}
+                <li class="btn-cta"><a href="/login"><span>log in</span></a></li>
+                                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+<center>
+<aside id="colorlib-hero">
+      <div class="flexslider">
+        <ul class="slides">
+          <li style="background-image: url(../static/user/images/notification1.jpeg);">
+            <div class="overlay"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                  <div class="slider-text-inner text-center">
+                    <h1>Notifications </h1>
+                    <h2><span><a href="/">Home</a></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </aside>
+    <div class="colorlib-event">
+      <div class="container">
+        {% for row in val %}
+        <!-- <div class="row"> -->
+          <div class="col-md-12 animate-box">
+            <div class="event-entry">
+              <div class="desc">
+                <p class="meta"><span class="day">{{ row['day(date)'] }}</span><span class="month">{% if row['month(date)'] ==1 %}
+                JAN
+                {% elif  row['month(date)'] ==2 %}
+                FEB
+                {% elif  row['month(date)'] ==3 %}
+                MAR
+                {% elif  row['month(date)'] ==4 %}
+                APR
+                {% elif  row['month(date)'] ==5 %}
+                MAY
+                {% elif  row['month(date)'] ==6 %}
+                JUN
+                {% elif  row['month(date)'] ==7 %}
+                JLY
+                {% elif  row['month(date)'] ==8 %}
+                AUG
+                {% elif  row['month(date)'] ==9 %}
+                SEP
+                {% elif  row['month(date)'] ==10 %}
+                OCT
+                {% elif  row['month(date)'] ==11 %}
+                NOV
+                {% elif  row['month(date)'] ==12 %}
+                DEC
+                </span></p>{% endif %}
+                <p class="organizer"><span>{{ row['notfcn_ctnt'] }}</span></p></div>
+                <div>{{ row['year(date)'] }}</div>
+              </div>
+            </div>
+      {% endfor %}</div></div>
+</form></center>
+{% include 'User/footer.html' %}
+

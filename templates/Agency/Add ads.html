@@ -1,0 +1,65 @@
+{% include 'Agency/agency_header.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<center>
+<form action="/Add_ads1" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-secondary"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-image"></i><br>Ads Management</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+<table width="439" border="1"class="table table-bordered table-hover>
+    <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Ads Added</h2>
+          {% else %}
+    <td width="218"><div align="center"><strong>Ads</strong></div></td>
+    <td width="85"><div align="center"><strong>Date</strong></div></td>
+    <td width="54"><div align="center"><strong>Status</strong></div></td>
+    <td width="54"><div align="center"></div></td>
+    </tr>
+  {% for row in data %}
+  <tr>
+    <td>&nbsp;
+      <div align="center"><img src="../../static/ads/{{ row['ad'] }}" width="200" height="200"/></div></td>
+    <td>&nbsp;
+      <div align="center">{{ row['date'] }}</div></td>
+    <td>    <div align="center">{{ row['type'] }}</div>
+    <td>
+      <p align="center"><a href="/ad_dlt?id={{ row['ad_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></p>
+      </tr>{% endfor %}{%endif%}
+</table>
+    <table>
+  <tr>
+    <td><div class="form-group">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input name="img" id="img" type="file" required="required" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Upload Ads</label>
+                        <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                            </script>
+                      </div>&nbsp;
+                     <input class="btn btn-primary" name="post" type="submit" id="post" value="Upload" />
+                    </div>
+                  </div>
+    <!-- <div class="btn btn-secondary">
+      <label  for="img"></label>
+      <input  type="file" name="img" id="img" />
+      <input class="btn btn-primary" name="post" type="submit" id="post" value="Upload ad" /> --></td>
+    </div>
+    </tr>
+    </table>
+</form></center>
+{% include 'Agency/agency_footer.html' %}
+

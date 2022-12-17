@@ -1,0 +1,49 @@
+{% include 'Admin/admin_header.html' %}
+
+
+<center>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1085" border="0">
+    <tr>
+      <td width="948"><div align="center" >
+        <div class="card card-info"> 
+        <div class="card-header">
+        <h1 align="center"><i class="nav-icon far fa-comments"></i><br>Complaints</h1>
+      </div></div></div></td>
+    </tr>
+  </table>
+  <table width="200" border="1" class="table table-bordered table-hover>>
+   <tr>
+      <td width="113"></td>
+      {% if ln==1 %}
+    <h2>No Complaints</h2>
+          {% else %}
+      <td><div align="center"><strong>#</strong></div></td>
+      <td><div align="center"><strong>Complaint</strong></div></td>
+      <td><div align="center"><strong>User</strong></div></td>
+      <td><div align="center"><strong>Agency</strong></div></td>
+      <td><div align="center"><strong>Date</strong></div></td>
+      <td><div align="center"><strong>Reply</strong></div></td>
+      <td><div align="center"><strong>Reply Date</strong></div></td>
+    </tr>
+      {% for row in data %}
+    <tr>
+      <td><div align="center">{{ loop.index}}</div></td>
+      <td><div align="center">{{ row['cmplt']}}</div></td>
+      <td><div align="center">{{ row['username']}}</div></td>
+      <td><div align="center">{{ row['agency_name']}}</div></td>
+      <td><div align="center">{{ row['date']}}</div></td>
+        {% if row['reply']=='pending' %}
+      <td colspan="2" align="center"><div align="center"><a href="/reply?id={{ row['cmplt_id'] }}&aid={{ row['agency_id'] }}"><input class="btn btn-primary" type="button" value="Reply"></a></div></td>
+        {%  else  %}
+      <td><div align="center">{{ row['reply']}}</div></td>
+      <td><div align="center">{{ row['rdate']}}</div></td>
+      <td><div align="center"><div align="center"><a href="/rdlt?id={{ row['cmplt_id'] }}"><input class="btn btn-danger" type="button" value="Delete"></a></div></div></td>
+        {% endif %}
+    </tr>
+      {% endfor %}{%endif%}
+  </table>
+</form></center>
+
+{% include 'Admin/admin_footer.html' %}
+
